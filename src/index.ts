@@ -1,5 +1,10 @@
+import express from 'express';
 import { createConnection } from "typeorm";
+import filmRoutes from './routes/film';
 
+const app = express();
+
+const port = process.env.PORT || 8081;
 const main = async () => {
   try {
     await createConnection({
@@ -11,6 +16,11 @@ const main = async () => {
       database: "starwarsapi",
     });
     console.log("Conneted to Postgres");
+    app.use(express.json());
+    app.use('/film',filmRoutes)
+    app.listen(port,()=>{
+        console.log(`Now runing on port ${port}`)
+    })
   } catch (error) {
     console.error(error);
     throw new Error("Unable to connect to Postgres");
