@@ -3,7 +3,7 @@ import { listFilms } from '../controllers/film';
 
 const router = express.Router();
 
-router.post('/',listFilms)
+router.get('/',listFilms)
 
 
 export default router;

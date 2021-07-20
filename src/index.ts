@@ -1,5 +1,7 @@
 import express from 'express';
 import { createConnection } from "typeorm";
+import { Comment } from './entities/comment';
+import { Film } from './entities/film';
 import filmRoutes from './routes/film';
 
 const app = express();
@@ -14,6 +16,8 @@ const main = async () => {
       username: "macuser",
       password: "1234",
       database: "starwarsapi",
+      entities: [Comment,Film],
+      synchronize: true,
     });
     console.log("Conneted to Postgres");
     app.use(express.json());
