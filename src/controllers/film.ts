@@ -1,6 +1,7 @@
 import { Request, Response } from "express";
 import axios from "axios";
 import { Film } from "../entities/film";
+import { createQueryBuilder } from "typeorm";
 
 export const listAllFilms = async (
   req: Request,
@@ -54,6 +55,23 @@ export const getOneFilm = async (req: Request, res: Response): Promise<Response 
         }else{
             return res.status(401).json({msg:"Not found"})
         }
+    } catch (error) {
+        console.error(error)
+        throw new Error('Something went wrong')
+    }
+}
+
+export const getAllFilmQueried = async (req: Request, res: Response): Promise<Response | void> => {
+    try {
+        const film = await createQueryBuilder(
+            'film'
+        )
+        .select('film.opening_crawl')
+        .addSelect('film.release_date')
+        .from(Film,'film')
+        .getMany()
+
+        return res.status(201).json({film})
     } catch (error) {
         console.error(error)
         throw new Error('Something went wrong')
