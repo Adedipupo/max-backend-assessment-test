@@ -1,9 +1,9 @@
 import express from 'express';
-import { listFilms } from '../controllers/film';
+import { getOneFilm, listAllFilms } from '../controllers/film';
 
 const router = express.Router();
 
-router.get('/',listFilms)
-
+router.get('/',listAllFilms)
+router.get('/:id',getOneFilm)
 
 export default router;

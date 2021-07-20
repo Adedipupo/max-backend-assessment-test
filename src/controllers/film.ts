@@ -2,13 +2,12 @@ import { Request, Response } from "express";
 import axios from "axios";
 import { Film } from "../entities/film";
 
-export const listFilms = async (
+export const listAllFilms = async (
   req: Request,
   res: Response
 ): Promise<Response | void> => {
   try {
     const filmResult = await Film.find();
-    console.log(filmResult);
     if (!filmResult.length) {
       const films = await axios.get("https://swapi.dev/api/films");
       if (films) {
@@ -37,10 +36,26 @@ export const listFilms = async (
         return res.status(200).json({ results: allFilms });
       }
     }
-    console.log("I ws reached!!!");
     return res.status(200).json({ results: filmResult });
   } catch (error) {
     console.error(error);
     throw new Error("Something went wrong");
   }
 };
+
+export const getOneFilm = async (req: Request, res: Response): Promise<Response | void> => {
+    try {
+        const {id} = req.params;
+
+        const film = await Film.findOne(id)
+    
+        if(film){
+            return res.status(200).json({ result: film})
+        }else{
+            return res.status(401).json({msg:"Not found"})
+        }
+    } catch (error) {
+        console.error(error)
+        throw new Error('Something went wrong')
+    }
+}
