@@ -34,7 +34,7 @@ const main = async () => {
     });
   } catch (error) {
     console.error(error);
-    throw new Error("Unable to connect to Postgres");
+    throw new Error("Unable to connect to Postgres Database");
   }
 };
 
