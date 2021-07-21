@@ -16,11 +16,11 @@ const main = async () => {
   try {
     await createConnection({
       type: "postgres",
-      host: "localhost",
-      port: 5431,
-      username: "macuser",
-      password: "1234",
-      database: "starwarsapi",
+      host: "ec2-52-1-20-236.compute-1.amazonaws.com",
+      port: 5432,
+      username: "nqdtoxhrwdvunh",
+      password: "82613f70df3c8fb48e4d857ce486691d821b26403f6ba21488313cb381fb0d9d",
+      database: "de8mtikhmjrrlh",
       entities: [Comment, Film],
       synchronize: true,
     });
