@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "start": "node  dist/index.js",
+    "start": "node  ./dist/index.js",
     "dev": "nodemon --watch './**/*.ts' --exec 'ts-node' src/index.ts"
   },
   "repository": "https://github.com/Adedipupo/max-backend-assessment-test.git",
