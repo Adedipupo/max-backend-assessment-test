@@ -60,3 +60,22 @@ export const getAllComments = async (req: Request, res: Response): Promise<Respo
     throw new Error("Something went wrong");
   }
 }
+
+export const getAComment = async (req: Request, res: Response): Promise<Response|void>=>{
+  try {
+    const {id} = req.params;
+    const comments = await createQueryBuilder("comment")
+      .select("comments.id")
+      .addSelect("comments.comments")
+      .addSelect("comments.created_at")
+      .addSelect("comments.film_id")
+      .from(Comment, "comments")
+      .where("comment.id = :id", { id: parseInt(id) })
+      .getOne();
+
+    return res.status(201).json({ comments });
+  } catch (error) {
+    console.error(error);
+    throw new Error("Something went wrong");
+  }
+}
