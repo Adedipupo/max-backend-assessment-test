@@ -1,4 +1,5 @@
-import { Entity,BaseEntity, Column, PrimaryGeneratedColumn, CreateDateColumn, UpdateDateColumn } from "typeorm";
+import { Entity,BaseEntity, Column, PrimaryGeneratedColumn, CreateDateColumn, UpdateDateColumn, OneToMany } from "typeorm";
+import { Comment } from "./comment";
 
 @Entity('film')
 export class Film extends BaseEntity {
@@ -14,6 +15,10 @@ export class Film extends BaseEntity {
     director: string;
     @Column()
     producer: string;
+    @Column({
+        default: 0
+    })
+      comment_count: number;
     @Column({
         type:"date"
     })
@@ -38,4 +43,10 @@ export class Film extends BaseEntity {
     edited: string;
     @Column()
     url: string;
+
+    @OneToMany(
+        () => Comment,
+        comment => comment.film
+    )
+    comments: Comment[];
 }

@@ -1,22 +1,33 @@
-import { Entity,BaseEntity, Column, PrimaryGeneratedColumn, CreateDateColumn } from "typeorm";
+import {
+  Entity,
+  Column,
+  PrimaryGeneratedColumn,
+  CreateDateColumn,
+  ManyToOne,
+  JoinColumn,
+  BaseEntity,
+} from "typeorm";
+import { Film } from "./film";
 
-@Entity('comment')
+@Entity("comment")
 export class Comment extends BaseEntity {
+  @PrimaryGeneratedColumn()
+  id: number;
+  @Column({
+      type:"varchar", 
+    length: 500,
+  })
+  comments: string;
+  @CreateDateColumn()
+  created_at: Date;
+  //   @Column({
+  //     type: "numeric",
+  //   })
+  //   public_ip_address: number;
 
-    @PrimaryGeneratedColumn()
-    id:  number;
-    @Column({
-        length:500
-    })
-    @Column()
-    comment: string;
-    @CreateDateColumn()
-    created_at: Date;
-    // @Column()
-    // public_ip_address: string;
-    @Column({
-        type:"numeric"
-    })
-    film_id: string;
-
+  @ManyToOne(() => Film, (film) => film.comments)
+  @JoinColumn({
+    name: "film_id",
+  })
+  film: Film;
 }

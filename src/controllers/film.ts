@@ -44,36 +44,66 @@ export const listAllFilms = async (
   }
 };
 
-export const getOneFilm = async (req: Request, res: Response): Promise<Response | void> => {
-    try {
-        const {id} = req.params;
+export const getOneFilm = async (
+  req: Request,
+  res: Response
+): Promise<Response | void> => {
+  try {
+    const { id } = req.params;
 
-        const film = await Film.findOne(id)
-    
-        if(film){
-            return res.status(200).json({ result: film})
-        }else{
-            return res.status(401).json({msg:"Not found"})
-        }
-    } catch (error) {
-        console.error(error)
-        throw new Error('Something went wrong')
+    const film = await Film.findOne(id);
+
+    if (film) {
+      return res.status(200).json({ result: film });
+    } else {
+      return res.status(401).json({ msg: "Not found" });
     }
-}
+  } catch (error) {
+    console.error(error);
+    throw new Error("Something went wrong");
+  }
+};
 
-export const getAllFilmQueried = async (req: Request, res: Response): Promise<Response | void> => {
-    try {
-        const film = await createQueryBuilder(
-            'film'
-        )
-        .select('film.opening_crawl')
-        .addSelect('film.release_date')
-        .from(Film,'film')
-        .getMany()
+export const getAFilmQueried = async (
+  req: Request,
+  res: Response
+): Promise<Response | void> => {
+  try {
+    const { id } = req.params;
+    const film = await createQueryBuilder("film")
+      .select("film.id")
+      .addSelect("film.title")
+      .addSelect("film.opening_crawl")
+      .addSelect("film.release_date")
+      .addSelect("film.comment_count")
+      .from(Film, "film")
+      .where("film.id = :id", { id: parseInt(id) })
+      .getOne();
 
-        return res.status(201).json({film})
-    } catch (error) {
-        console.error(error)
-        throw new Error('Something went wrong')
-    }
-}
+    return res.status(201).json({ film });
+  } catch (error) {
+    console.error(error);
+    throw new Error("Something went wrong");
+  }
+};
+
+export const getAllFilmQueried = async (
+  req: Request,
+  res: Response
+): Promise<Response | void> => {
+  try {
+    const film = await createQueryBuilder("film")
+      .select("film.title")
+      .addSelect("film.opening_crawl")
+      .addSelect("film.release_date")
+      .addSelect("film.comment_count")
+      .from(Film, "film")
+      // .orderBy('film.release_date', 'ASC');
+      .getMany();
+
+    return res.status(201).json({ film });
+  } catch (error) {
+    console.error(error);
+    throw new Error("Something went wrong");
+  }
+};
