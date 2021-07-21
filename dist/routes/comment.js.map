@@ -1,0 +1,1 @@
+{"version":3,"file":"comment.js","sourceRoot":"","sources":["../../src/routes/comment.ts"],"names":[],"mappings":";;;;;AAAA,sDAA8B;AAC9B,oDAAoF;AAGpF,MAAM,MAAM,GAAG,iBAAO,CAAC,MAAM,EAAE,CAAC;AAEhC,MAAM,CAAC,GAAG,CAAC,WAAW,EAAE,wBAAc,CAAC,CAAA;AACvC,MAAM,CAAC,GAAG,CAAC,cAAc,EAAE,qBAAW,CAAC,CAAA;AACvC,MAAM,CAAC,IAAI,CAAC,wBAAwB,EAAE,uBAAa,CAAC,CAAC;AAGrD,kBAAe,MAAM,CAAC"}
