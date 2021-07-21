@@ -15,12 +15,12 @@ const port = process.env.PORT || 8081;
 const main = async () => {
   try {
     await createConnection({
-      type: "postgres",
-      host: "ec2-52-1-20-236.compute-1.amazonaws.com",
+      type: process.env.TYPEORM_CONNECTION as "postgres",
+      host: process.env.TYPEORM_HOST,
       port: 5432,
-      username: "nqdtoxhrwdvunh",
-      password: "82613f70df3c8fb48e4d857ce486691d821b26403f6ba21488313cb381fb0d9d",
-      database: "de8mtikhmjrrlh",
+      username: process.env.TYPEORM_USERNAME,
+      password: process.env.TYPEORM_PASSWORD,
+      database: process.env.TYPEORM_DATABASE,
       entities: [Comment, Film],
       synchronize: true,
     });
