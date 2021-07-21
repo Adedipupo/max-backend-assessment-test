@@ -27,7 +27,7 @@ const main = () => __awaiter(void 0, void 0, void 0, function* () {
     try {
         yield typeorm_1.createConnection({
             type: "postgres",
-            database: process.env.DATABASE_URL,
+            url: process.env.DATABASE_URL,
             entities: [comment_1.Comment, film_1.Film],
             synchronize: true,
         });

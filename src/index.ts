@@ -16,7 +16,7 @@ const main = async () => {
   try {
     await createConnection({
       type: "postgres",
-      database:process.env.DATABASE_URL,
+      url:process.env.DATABASE_URL,
       entities: [Comment, Film],
       synchronize: true,
 
