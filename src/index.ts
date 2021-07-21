@@ -19,7 +19,7 @@ const main = async () => {
       url:process.env.DATABASE_URL,
       entities: [Comment, Film],
       synchronize: true,
-
+      ssl:true
         });
     console.log("Conneted to Postgres");
     app.use(express.json());

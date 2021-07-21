@@ -30,6 +30,7 @@ const main = () => __awaiter(void 0, void 0, void 0, function* () {
             url: process.env.DATABASE_URL,
             entities: [comment_1.Comment, film_1.Film],
             synchronize: true,
+            ssl: true
         });
         console.log("Conneted to Postgres");
         app.use(express_1.default.json());
