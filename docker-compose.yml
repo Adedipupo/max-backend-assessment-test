@@ -1,0 +1,13 @@
+version: '3.8'
+
+services:
+  maxbackendassessmenttest:
+    image: maxbackendassessmenttest
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    environment:
+      NODE_ENV: production
+      env_file: .env  
+    ports:
+      - 8081:8081
