@@ -16,9 +16,12 @@ const main = async () => {
   try {
     await createConnection({
       type: "postgres",
-      url:process.env.DATABASE_URL,
+      url: process.env.DATABASE_URL,
       entities: [Comment, Film],
       synchronize: true,
+      ssl: {
+        rejectUnauthorized: false
+      }
         });
     console.log("Conneted to Postgres");
     app.use(express.json());
