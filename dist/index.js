@@ -27,11 +27,11 @@ const main = () => __awaiter(void 0, void 0, void 0, function* () {
     try {
         yield typeorm_1.createConnection({
             type: process.env.TYPEORM_CONNECTION,
-            host: process.env.TYPEORM_HOST,
-            port: process.env.TYPEORM_PORT,
-            username: process.env.TYPEORM_USERNAME,
-            password: process.env.TYPEORM_PASSWORD,
-            database: process.env.TYPEORM_DATABASE,
+            host: process.env.Host,
+            port: process.env.Port,
+            username: process.env.User,
+            password: process.env.Password,
+            database: process.env.Database,
             entities: [comment_1.Comment, film_1.Film],
             synchronize: true,
         });

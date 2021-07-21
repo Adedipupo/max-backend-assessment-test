@@ -16,11 +16,11 @@ const main = async () => {
   try {
     await createConnection({
       type: process.env.TYPEORM_CONNECTION as "postgres",
-      host: process.env.TYPEORM_HOST,
-      port: process.env.TYPEORM_PORT as unknown as number,
-      username: process.env.TYPEORM_USERNAME,
-      password: process.env.TYPEORM_PASSWORD,
-      database: process.env.TYPEORM_DATABASE,
+      host: process.env.Host,
+      port: process.env.Port as unknown as number,
+      username: process.env.User,
+      password: process.env.Password,
+      database: process.env.Database,
       entities: [Comment, Film],
       synchronize: true,
     });
