@@ -26,12 +26,12 @@ const port = process.env.PORT || 8081;
 const main = () => __awaiter(void 0, void 0, void 0, function* () {
     try {
         yield typeorm_1.createConnection({
-            type: process.env.TYPEORM_CONNECTION,
-            host: process.env.TYPEORM_HOST,
+            type: "postgres",
+            host: "localhost",
             port: 5431,
-            username: process.env.TYPEORM_USERNAME,
-            password: process.env.TYPEORM_PASSWORD,
-            database: process.env.TYPEORM_DATABASE,
+            username: "macuser",
+            password: "1234",
+            database: "starwarsapi",
             entities: [comment_1.Comment, film_1.Film],
             synchronize: true,
         });

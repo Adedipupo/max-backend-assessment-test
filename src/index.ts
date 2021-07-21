@@ -15,12 +15,12 @@ const port = process.env.PORT || 8081;
 const main = async () => {
   try {
     await createConnection({
-      type: process.env.TYPEORM_CONNECTION as "postgres",
-      host: process.env.TYPEORM_HOST,
+      type: "postgres",
+      host: "localhost",
       port: 5431,
-      username: process.env.TYPEORM_USERNAME,
-      password: process.env.TYPEORM_PASSWORD,
-      database: process.env.TYPEORM_DATABASE,
+      username: "macuser",
+      password: "1234",
+      database: "starwarsapi",
       entities: [Comment, Film],
       synchronize: true,
     });
