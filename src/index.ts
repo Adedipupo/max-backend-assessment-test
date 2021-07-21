@@ -15,7 +15,7 @@ const port = process.env.PORT || 8081;
 const main = async () => {
   try {
     await createConnection({
-      type: process.env.TYPEORM_CONNECTION as "postgres",
+      type: 'postgres',
       host: process.env.Host,
       port: process.env.Port as unknown as number,
       username: process.env.User,

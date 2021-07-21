@@ -26,7 +26,7 @@ const port = process.env.PORT || 8081;
 const main = () => __awaiter(void 0, void 0, void 0, function* () {
     try {
         yield typeorm_1.createConnection({
-            type: process.env.TYPEORM_CONNECTION,
+            type: 'postgres',
             host: process.env.Host,
             port: process.env.Port,
             username: process.env.User,
