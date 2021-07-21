@@ -70,7 +70,7 @@ export const getAComment = async (req: Request, res: Response): Promise<Response
       .addSelect("comments.created_at")
       .addSelect("comments.film_id")
       .from(Comment, "comments")
-      .where("comment.id = :id", { id: parseInt(id) })
+      .where("comments.id = :id", { id: parseInt(id) })
       .getOne();
 
     return res.status(201).json({ comments });

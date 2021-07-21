@@ -1,4 +1,5 @@
 import express from "express";
+import dotenv from "dotenv";
 import { createConnection } from "typeorm";
 import { Comment } from "./entities/comment";
 import { Film } from "./entities/film";
@@ -6,18 +7,20 @@ import filmRoutes from "./routes/film";
 import commentRoutes from "./routes/comment";
 import characterRoutes from "./routes/character";
 
+dotenv.config();
+
 const app = express();
 
 const port = process.env.PORT || 8081;
 const main = async () => {
   try {
     await createConnection({
-      type: "postgres",
-      host: "localhost",
+      type: process.env.TYPEORM_CONNECTION as "postgres",
+      host: process.env.TYPEORM_HOST,
       port: 5431,
-      username: "macuser",
-      password: "1234",
-      database: "starwarsapi",
+      username: process.env.TYPEORM_USERNAME,
+      password: process.env.TYPEORM_PASSWORD,
+      database: process.env.TYPEORM_DATABASE,
       entities: [Comment, Film],
       synchronize: true,
     });
@@ -25,7 +28,7 @@ const main = async () => {
     app.use(express.json());
     app.use("/film", filmRoutes);
     app.use("/api", commentRoutes);
-    app.use("/api",characterRoutes);
+    app.use("/api", characterRoutes);
 
     app.listen(port, () => {
       console.log(`Now runing on port ${port}`);
