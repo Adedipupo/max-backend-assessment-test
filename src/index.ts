@@ -23,7 +23,8 @@ const main = async () => {
       database: process.env.Database,
       entities: [Comment, Film],
       synchronize: true,
-    });
+
+        });
     console.log("Conneted to Postgres");
     app.use(express.json());
     app.use("/film", filmRoutes);

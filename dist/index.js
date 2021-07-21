@@ -26,14 +26,14 @@ const port = process.env.PORT || 8081;
 const main = () => __awaiter(void 0, void 0, void 0, function* () {
     try {
         yield typeorm_1.createConnection({
-            type: process.env.TYPEORM_CONNECTION,
+            type: "postgres",
             host: process.env.Host,
             port: process.env.Port,
             username: process.env.User,
             password: process.env.Password,
             database: process.env.Database,
             entities: [comment_1.Comment, film_1.Film],
-            synchronize: true,
+            synchronize: true
         });
         console.log("Conneted to Postgres");
         app.use(express_1.default.json());
